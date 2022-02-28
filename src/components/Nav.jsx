@@ -1,13 +1,23 @@
+import { fireEvent } from '@testing-library/react';
 import React, { Component } from 'react';
 
-class Nav extends Component {
+export default class Nav extends Component {
     render() {
+        const tags = [];
+        for (let i=0; i<this.props.data.length; i++) {
+            let d = this.props.data[i];
+        tags.push(<li key={d.id}>
+            <a href="#"
+            data-id={d.id} 
+            onClick={function(e){
+                this.props.onClick(e.target.dataset.id);
+            }.bind(this)}>{d.title}</a>
+            </li>)
+        }
         return (
             <nav>
                 <ol>
-                    <li></li>
-                    <li></li>
-                    <li></li>
+                    {tags}
                 </ol>
 
             </nav>
@@ -15,4 +25,3 @@ class Nav extends Component {
     }
 }
 
-export default Nav;

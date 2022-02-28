@@ -13,10 +13,12 @@ const initState = {
         {id:3, title:'JS', desc:'JS is ...'}
     ]
 }
-function reducer(state, action) {
-    if(state === undefined){
-        return initState;
+        function reducer(state=initState, action) {
+    if(action.type === 'WELCOME'){
+        return {...state, mode:action.mode};
     }
+    return state;
 }
- 
-export default createStore(reducer);
+export default createStore(reducer,
+    window._REDUX_DEVTOOLS_EXTENSION_&&
+    window._REDUX_DEVTOOLS_EXTENSION_());
